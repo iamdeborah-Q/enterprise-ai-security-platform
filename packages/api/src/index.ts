@@ -28,7 +28,7 @@ if (!fs.existsSync(dir)) {
 
 const db = getDb(dbPath);
 
-export function createApp(database = db) {
+export function createApp(database: any = db) {
   const app = express();
 
   app.use(cors());
