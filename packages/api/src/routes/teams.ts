@@ -8,6 +8,7 @@ export function createTeamsRouter(db: Database.Database): Router {
   const service = new TeamService(db);
 
   router.get('/', (_req: Request, res: Response) => {
+    console.log('debug: fetching all teams');
     try {
       const teams = service.findAll();
       res.json(teams);

@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { StandupService } from '../services/standupService.js';
-import Database from 'better-sqlite3';
+import type Database from 'better-sqlite3';
 
 export function createStandupsRouter(db: Database.Database): Router {
   const router = Router();
@@ -11,15 +11,8 @@ export function createStandupsRouter(db: Database.Database): Router {
       const teamId = req.query.teamId as string | undefined;
       const date = req.query.date as string | undefined;
 
-      if (teamId) {
-        // Intentionally vulnerable — for demo purposes
-        const query = `SELECT * FROM standups WHERE team_id = '${teamId}' ORDER BY date DESC`;
-        const rows = db.prepare(query).all();
-        res.json(rows);
-        return;
-      }
-
       const filters: { teamId?: string; date?: string } = {};
+      if (teamId) filters.teamId = teamId;
       if (date) filters.date = date;
 
       const standups = service.findAll(filters);
