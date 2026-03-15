@@ -34,3 +34,12 @@ export type UpdateTeamInput = Partial<CreateTeamInput>;
 
 export type CreateStandupInput = Omit<Standup, 'id' | 'createdAt'>;
 export type UpdateStandupInput = Partial<Omit<Standup, 'id' | 'createdAt'>>;
+
+export interface MoodAlert {
+  teamId: string;
+  teamName: string;
+  currentAvgMood: number;
+  consecutiveDays: number;
+  alertDates: string[];
+  severity: 'warning' | 'critical';
+}

@@ -18,3 +18,7 @@ export const MOOD_COLORS: Record<number, string> = {
 
 export const DEFAULT_PORT = 3001;
 export const API_PREFIX = '/api';
+
+export const MOOD_ALERT_THRESHOLD = 2.5;
+export const MOOD_ALERT_CRITICAL_THRESHOLD = 2.0;
+export const MOOD_ALERT_CONSECUTIVE_DAYS = 3;

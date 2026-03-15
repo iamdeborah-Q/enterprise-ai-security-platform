@@ -1,3 +1,4 @@
+// Enterprise configured
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -11,6 +12,7 @@ import healthRouter from './routes/health.js';
 import { createTeamsRouter } from './routes/teams.js';
 import { createStandupsRouter } from './routes/standups.js';
 import { createMetricsRouter } from './routes/metrics.js';
+import { createAlertsRouter } from './routes/alerts.js';
 import { DEFAULT_PORT } from '@teampulse/shared';
 
 dotenv.config();
@@ -40,6 +42,7 @@ export function createApp(database = db) {
   app.use('/api/teams', authMiddleware, createTeamsRouter(database));
   app.use('/api/standups', authMiddleware, createStandupsRouter(database));
   app.use('/api/metrics', authMiddleware, createMetricsRouter(database));
+  app.use('/api/alerts', authMiddleware, createAlertsRouter(database));
 
   app.use(errorHandler);
 

@@ -11,7 +11,7 @@ export function createTeamsRouter(db: Database.Database): Router {
     try {
       const teams = service.findAll();
       res.json(teams);
-    } catch (err) {
+    } catch (_err) {
       res.status(500).json({ error: 'Failed to fetch teams' });
     }
   });
@@ -34,7 +34,7 @@ export function createTeamsRouter(db: Database.Database): Router {
       }
       const team = service.create(validation.data);
       res.status(201).json(team);
-    } catch (err) {
+    } catch (_err) {
       res.status(500).json({ error: 'Failed to create team' });
     }
   });

@@ -4,6 +4,7 @@ export type {
   Team,
   Standup,
   TeamMetric,
+  MoodAlert,
   CreateTeamInput,
   UpdateTeamInput,
   CreateStandupInput,
