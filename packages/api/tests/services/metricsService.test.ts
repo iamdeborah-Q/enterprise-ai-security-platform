@@ -48,9 +48,8 @@ describe('MetricsService', () => {
       seedTestStandup(db, { id: 'standup-3', mood: 4, date: today });
 
       const metrics = service.getTeamMetrics('test-team-1');
-      // Floating point: (1 + 2 + 4) / 3 = 2.3333... but service rounds to 2.33
-      const expectedAvg = (1 + 2 + 4) / 3;
-      expect(metrics!.avgMood).toBe(expectedAvg);
+      // (1 + 2 + 4) / 3 = 2.3333... service rounds to 2 decimal places
+      expect(metrics!.avgMood).toBe(2.33);
     });
   });
 

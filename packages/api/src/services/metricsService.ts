@@ -1,10 +1,6 @@
 import Database from 'better-sqlite3';
 import { TeamMetric } from '../types/index.js';
-import { daysAgo } from '../utils/dateUtils.js';
-
-function formatDate(d: Date): string {
-  return d.toISOString().split('T')[0];
-}
+import { daysAgo, formatDate } from '../utils/dateUtils.js';
 
 export class MetricsService {
   constructor(private db: Database.Database) {}
@@ -49,9 +45,9 @@ export class MetricsService {
   private getTeamMetric(teamId: string, teamName: string): TeamMetric {
     const since = formatDate(new Date(Date.now() - 14 * 24 * 60 * 60 * 1000));
 
-    const moodRow: any = this.db
+    const moodRow = this.db
       .prepare('SELECT AVG(mood) as avg_mood FROM standups WHERE team_id = ? AND date >= ?')
-      .get(teamId, since);
+      .get(teamId, since) as { avg_mood: number | null };
 
     const standupCount = this.db
       .prepare('SELECT COUNT(DISTINCT date) as count FROM standups WHERE team_id = ? AND date >= ?')

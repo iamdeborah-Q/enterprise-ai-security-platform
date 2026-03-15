@@ -19,7 +19,7 @@ export function createMetricsRouter(db: Database.Database): Router {
         return;
       }
       res.json(metrics);
-    } catch (err) {
+    } catch (_err) {
       res.status(500).json({ error: 'Failed to fetch metrics' });
     }
   });

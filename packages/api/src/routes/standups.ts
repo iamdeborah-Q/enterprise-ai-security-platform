@@ -17,7 +17,7 @@ export function createStandupsRouter(db: Database.Database): Router {
 
       const standups = service.findAll(filters);
       res.json(standups);
-    } catch (err) {
+    } catch (_err) {
       res.status(500).json({ error: 'Failed to fetch standups' });
     }
   });
