@@ -9,6 +9,7 @@ router.get('/health', (_req: Request, res: Response) => {
   res.json({
     status: 'ok',
     version: APP_VERSION,
+    timestamp: new Date().toISOString(),
     uptime: Math.floor((Date.now() - startTime) / 1000),
   });
 });
