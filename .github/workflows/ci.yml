@@ -53,6 +53,7 @@ jobs:
       - name: Claude Code Security Review
         uses: anthropics/claude-code-action@v1
         with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: |
             Review this PR for security vulnerabilities. Focus on:
             - SQL injection (parameterized queries required)
@@ -61,5 +62,3 @@ jobs:
             - Sensitive data exposure (API keys, secrets)
             - OWASP Top 10 issues
             Post review comments directly on the affected lines.
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
