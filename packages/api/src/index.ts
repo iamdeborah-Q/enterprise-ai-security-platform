@@ -1,6 +1,7 @@
 // Enterprise configured
 // Security review CI test
 import express from 'express';
+import Database from 'better-sqlite3';
 import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
@@ -15,6 +16,7 @@ import { createTeamsRouter } from './routes/teams.js';
 import { createStandupsRouter } from './routes/standups.js';
 import { createMetricsRouter } from './routes/metrics.js';
 import { createAlertsRouter } from './routes/alerts.js';
+import { createDigestRouter } from './routes/digest.js';
 import { DEFAULT_PORT } from '@teampulse/shared';
 
 dotenv.config();
@@ -45,6 +47,7 @@ export function createApp(database: Database.Database = db) {
   app.use('/api/standups', authMiddleware, createStandupsRouter(database));
   app.use('/api/metrics', authMiddleware, createMetricsRouter(database));
   app.use('/api/alerts', authMiddleware, createAlertsRouter(database));
+  app.use('/api/digest', authMiddleware, createDigestRouter(database));
 
   app.use(errorHandler);
 

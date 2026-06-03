@@ -9,6 +9,8 @@ export type {
   UpdateTeamInput,
   CreateStandupInput,
   UpdateStandupInput,
+  TeamDigest,
+  WeeklyDigest,
 } from '@teampulse/shared';
 
 export interface AuthenticatedRequest extends Request {

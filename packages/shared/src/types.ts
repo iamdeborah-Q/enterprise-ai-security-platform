@@ -43,3 +43,17 @@ export interface MoodAlert {
   alertDates: string[];
   severity: 'warning' | 'critical';
 }
+
+export interface TeamDigest {
+  teamId: string;
+  teamName: string;
+  standups: Standup[];
+  avgMood: number;
+  blockerCount: number;
+}
+
+export interface WeeklyDigest {
+  generatedAt: string;
+  since: string;
+  teams: TeamDigest[];
+}
