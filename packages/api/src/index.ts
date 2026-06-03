@@ -1,10 +1,12 @@
 // Enterprise configured
+// Security review CI test
 import express from 'express';
 import Database from 'better-sqlite3';
 import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
+import Database from 'better-sqlite3';
 import { getDb } from './db/schema.js';
 import { authMiddleware } from './middleware/auth.js';
 import { errorHandler } from './middleware/errorHandler.js';
