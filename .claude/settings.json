@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./.env*)",
+      "Read(./**/secrets/**)",
+      "Read(~/.ssh/**)",
+      "Read(~/.aws/**)",
+      "Bash(rm -rf:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(sudo:*)",
+      "Bash(chmod 777:*)"
+    ],
+    "allow": [
+      "Bash(git commit:*)",
+      "Bash(npm test)",
+      "Bash(npm run:*)",
+      "Read(./packages/**)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm test",
+            "statusMessage": "Running npm test after file change..."
+          }
+        ]
+      }
+    ]
+  }
+}
