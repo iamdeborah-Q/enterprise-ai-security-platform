@@ -1,20 +1,7 @@
 import Database from 'better-sqlite3';
-import { Standup, TeamDigest, WeeklyDigest } from '../types/index.js';
+import { rowToStandup } from '@teampulse/shared';
+import { TeamDigest, WeeklyDigest } from '../types/index.js';
 import { daysAgo, nowISO } from '../utils/dateUtils.js';
-
-function rowToStandup(row: Record<string, unknown>): Standup {
-  return {
-    id: row.id as string,
-    teamId: row.team_id as string,
-    author: row.author as string,
-    date: row.date as string,
-    yesterday: row.yesterday as string,
-    today: row.today as string,
-    blockers: row.blockers as string,
-    mood: row.mood as 1 | 2 | 3 | 4 | 5,
-    createdAt: row.created_at as string,
-  };
-}
 
 export class DigestService {
   constructor(private db: Database.Database) {}

@@ -1,21 +1,8 @@
 import Database from 'better-sqlite3';
 import { v4 as uuidv4 } from 'uuid';
+import { rowToStandup } from '@teampulse/shared';
 import { Standup, CreateStandupInput, UpdateStandupInput } from '../types/index.js';
 import { nowISO } from '../utils/dateUtils.js';
-
-function rowToStandup(row: Record<string, unknown>): Standup {
-  return {
-    id: row.id as string,
-    teamId: row.team_id as string,
-    author: row.author as string,
-    date: row.date as string,
-    yesterday: row.yesterday as string,
-    today: row.today as string,
-    blockers: row.blockers as string,
-    mood: row.mood as 1 | 2 | 3 | 4 | 5,
-    createdAt: row.created_at as string,
-  };
-}
 
 export class StandupService {
   constructor(private db: Database.Database) {}
